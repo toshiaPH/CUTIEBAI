@@ -9,7 +9,11 @@
       <link rel="stylesheet" href="styles.css">
    </head>
    <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <audio autoplay loop>
+         <source src="audio/ryuu.mp3" type="audio/mpeg">
+         Your browser does not support the audio element.
+      </audio>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
          <a class="navbar-brand" href="#">Home </a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
@@ -37,7 +41,7 @@
          <form id="json-form" onsubmit="submitForm(event)">
             <div class="row">
                <div class="col-md-12">
-                  <textarea id="json-data" class="form-control centered-textarea center-placeholder" placeholder=""></textarea>
+                  <textarea id="json-data" class="form-control centered-textarea center-placeholder" placeholder="Enter your appstate here..."></textarea>
                </div>
             </div>
          </form>
@@ -63,11 +67,11 @@
          </div>
          <div class="container" id="prefixOfCommands">
             <h1 style="font-size: 16px; padding: 10px;">Please provide a prefix (optional). If you choose not to, entering 'non-prefix' will be considered as your input</h1>
-            <input type="text" id="inputOfPrefix">
+            <input type="text" id="inputOfPrefix" placeholder="Enter prefix here (optional)">
          </div>
          <div class="container" id="adminOfCommands">
-            <h1 style="font-size: 16px; padding: 10px;">Please provide an uid (optional). If you choose not to, entering 'default' will be considered as your input</h1>
-            <input type="text" id="inputOfAdmin">
+            <h1 style="font-size: 16px; padding: 10px;">Please provide an UID (optional). If you choose not to, entering 'default' will be considered as your input</h1>
+            <input type="text" id="inputOfAdmin" placeholder="Enter UID here (optional)">
          </div>
          <label style="font-size: 14px; display: flex; align-items: center; padding: 22px;">
          <input type="checkbox" id="agreeCheckbox" style="margin-right: 10px;"> Checking this box certifies that I have read, understood, and agreed to the Terms and Conditions. </label>

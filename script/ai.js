@@ -16,7 +16,7 @@ module.exports.config = {
 };
 
 module.exports.run = async function({ api, event, args }) {
-  const { threadID, messageID } = event;
+  const { threadID, messageID, senderID } = event;
   const input = args.join(' ');
 
   if (!input) {
@@ -27,20 +27,18 @@ module.exports.run = async function({ api, event, args }) {
   }
 
   try {
-    const sentMessage = await api.sendMessage(global.font(`🔍 Processing: "${input}"`), threadID, messageID);
+    const sentMessage = await api.sendMessage(global.font(`⏳ Processing: "${input}"`), threadID, messageID);
     const sentMessageID = sentMessage.messageID;
 
-    // Fetch response from the new API
-    const { data } = await axios.get(`https://api.kenliejugarap.com/freegpt-openai/?question=${encodeURIComponent(input)}`);
+    const { data } = await axios.get(`https://yt-video-production.up.railway.app/gpt4-omni?ask=${encodeURIComponent(input)}&userid=${senderID}`);
 
-    if (data.status) {
-      // Send the AI response
+    if (data.status === "true" && data.response) {
       await api.editMessage(global.font(data.response), sentMessageID);
     } else {
-      await api.editMessage('The API returned an error. Please try again later.', sentMessageID);
+      await api.editMessage(global.font('The API returned an error or an invalid response. Please try again later.'), sentMessageID);
     }
   } catch (error) {
     console.error(error);
-    return api.sendMessage('An error occurred while processing your request.', threadID, messageID);
+    return api.sendMessage(global.font('An error occurred while processing your request. Please try again later.'), threadID, messageID);
   }
 };
