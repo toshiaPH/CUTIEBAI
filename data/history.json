@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "userid": "61570546971147",
+    "prefix": "",
+    "admin": [
+      ""
+    ],
+    "blacklist": [],
+    "enableCommands": [
+      {
+        "commands": [
+          "active-session",
+          "adc",
+          "ai",
+          "dictionary",
+          "help",
+          "hercai",
+          "insult",
+          "out",
+          "pinterest",
+          "poli",
+          "quote",
+          "recipe",
+          "shoti",
+          "tid",
+          "trans",
+          "uid",
+          "unsend",
+          "uptime"
+        ]
+      },
+      {
+        "handleEvent": [
+          "antiout",
+          "resend",
+          "welcomenoti"
+        ]
+      }
+    ],
+    "time": 2612
+  }
+]

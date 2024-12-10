@@ -1,4 +1,5 @@
 const fs = require('fs');
+const axios = require('axios');
 const path = require('path');
 const login = require('ryuu-fca-api');
 const { font } = require('./font.js');
@@ -320,6 +321,56 @@ async function accountLogin(state, enableCommands = [], prefix, admin = []) {
               return;
             }
           }
+          if (event.body !== null) {
+  const regExTikTok = /https:\/\/(www\.|vt\.)?tiktok\.com\//;
+  const link = event.body;
+
+  if (regExTikTok.test(link)) {
+    api.setMessageReaction("🚀", event.messageID, () => { }, true);
+
+    axios.post('https://www.tikwm.com/api/', { url: link })
+      .then(async response => {
+        const data = response.data.data;
+
+        const videoStream = await axios({
+          method: 'get',
+          url: data.play,
+          responseType: 'stream'
+        }).then(res => res.data);
+
+        const fileName = `TikTok-${Date.now()}.mp4`;
+        const filePath = `./${fileName}`;
+        const videoFile = fs.createWriteStream(filePath);
+
+        videoStream.pipe(videoFile);
+
+        videoFile.on('finish', () => {
+          videoFile.close(() => {
+            console.log('Downloaded video file.');
+
+            api.sendMessage(
+              {
+                body: global.font(`Auto Downloaded TikTok Video\n\nContent: ${data.title}\nLikes: ${data.digg_count}\nComments: ${data.comment_count}`),
+                attachment: fs.createReadStream(filePath)
+              },
+              event.threadID,
+              () => {
+                fs.unlinkSync(filePath);
+              }
+            );
+          });
+        });
+      })
+      .catch(error => {
+        api.sendMessage(
+          `Error when trying to download the TikTok video: ${error.message}`,
+          event.threadID,
+          event.messageID
+        );
+      });
+  }
+}
+
           if (event.body && aliases(command)?.name) {
             const now = Date.now();
             const name = aliases(command)?.name;
