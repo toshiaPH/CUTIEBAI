@@ -1,7 +1,7 @@
 const fs = require('fs');
 const axios = require('axios');
 const path = require('path');
-const login = require('ryuu-fca-api');
+const login = require('newgen-fca');
 const { font } = require('./font.js');
 const express = require('express');
 const app = express();

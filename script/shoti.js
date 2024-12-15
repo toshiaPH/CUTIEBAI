@@ -19,23 +19,35 @@ module.exports.config = {
   }
 };
 
-module.exports.run = async function({ api, event, args }) {
+module.exports.run = async function({ api, event }) {
   const { threadID, messageID } = event;
   const filePath = path.join(__dirname, 'shoti.mp4');
 
   let sentMessage;
 
   try {
-    sentMessage = await api.sendMessage(global.font('🔄 Fetching a random Shoti video. Please wait...'), threadID, messageID);
+    sentMessage = await api.sendMessage(global.font(' Fetching a random Shoti video. Please wait...'), threadID, messageID);
 
-    const response = await axios.get('https://shoti.kenliejugarap.com/getvideo.php?apikey=shoti-0763839a3b9de35ae3da73816d087d57d1bbae9f8997d9ebd0da823850fb80917e69d239a7f7db34b4d139a5e3b02658ed26f49928e5ab40f57c9798c9ae7290c536d8378ea8b01399723aaf35f62fae7c58d08f04');
+    const shotiData = JSON.parse(fs.readFileSync(path.join(__dirname, 'shoti.json'), 'utf8'));
+    const randomLink = shotiData[Math.floor(Math.random() * shotiData.length)];
+
+    const response = await axios.get('https://www.tikwm.com/api/', {
+      params: {
+        url: randomLink,
+        count: 12,
+        cursor: 0,
+        web: 1,
+        hd: 1
+      }
+    });
 
     if (sentMessage) {
       await api.unsendMessage(sentMessage.messageID);
     }
 
-    if (response.data.status) {
-      const videoUrl = response.data.videoDownloadLink;
+    if (response.data.code === 0) {
+      const videoUrl = `https://www.tikwm.com${response.data.data.hdplay}`;
+      const title = response.data.data.title || 'No Title';
 
       const videoStream = await axios({
         url: videoUrl,
@@ -52,19 +64,21 @@ module.exports.run = async function({ api, event, args }) {
       });
 
       await api.sendMessage({
-        body: global.font('🎥 Here is your Shoti video:'),
+        body: global.font(` Here's your Shoti video:\n\n Title: ${title}`),
         attachment: fs.createReadStream(filePath)
       }, threadID, messageID);
 
       fs.unlinkSync(filePath);
     } else {
-      await api.sendMessage(global.font('Failed to fetch a Shoti video. Please try again later.'), threadID, messageID);
+      await api.sendMessage(global.font(' Failed to fetch a Shoti video. Please try again later.'), threadID, messageID);
     }
   } catch (error) {
     console.error(error);
+
     if (sentMessage) {
       await api.unsendMessage(sentMessage.messageID);
     }
-    return api.sendMessage(global.font('An error occurred while fetching the Shoti video. Please try again later.'), threadID, messageID);
+
+    await api.sendMessage(global.font(' An error occurred while fetching the Shoti video. Please try again later.'), threadID, messageID);
   }
 };
