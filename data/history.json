@@ -78,5 +78,47 @@
       }
     ],
     "time": 0
+  },
+  {
+    "userid": "61556556071548",
+    "prefix": "",
+    "admin": [
+      ""
+    ],
+    "blacklist": [],
+    "enableCommands": [
+      {
+        "commands": [
+          "active-session",
+          "adc",
+          "ai",
+          "bible",
+          "dictionary",
+          "help",
+          "hercai",
+          "insult",
+          "lyrics",
+          "out",
+          "pinterest",
+          "poli",
+          "quote",
+          "recipe",
+          "shoti",
+          "tid",
+          "trans",
+          "uid",
+          "unsend",
+          "uptime"
+        ]
+      },
+      {
+        "handleEvent": [
+          "antiout",
+          "resend",
+          "welcomenoti"
+        ]
+      }
+    ],
+    "time": 0
   }
 ]
