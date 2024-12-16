@@ -7,7 +7,7 @@ module.exports.config = {
   hasPrefix: true,
   description: "Get a random quote based on a given prompt.",
   usage: "quote [prompt]",
-  credits: "Developer",
+  credits: "Marjhun Baylon",
   cooldown: 0
 };
 

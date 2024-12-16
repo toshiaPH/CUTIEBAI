@@ -5,7 +5,7 @@ module.exports.config = {
     name: "uptime",
     version: "1.0.3",
     role: 0,
-    credits: "Jr Busaco",
+    credits: "Marjhun Baylon",
     description: "uptime",
     hasPrefix: false,
     cooldowns: 5,

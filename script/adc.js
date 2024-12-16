@@ -5,7 +5,7 @@ module.exports.config = {
   hasPrefix: true,
   usage: '[reply or text]',
   description: 'Apply code from buildtooldev and pastebin',
-  credits: 'Deveploper',
+  credits: 'Marjhun Baylon',
   cooldown: 5
 };
 module.exports.run = async function({

@@ -7,7 +7,7 @@ module.exports.config = {
   hasPrefix: true,
   description: "Fetch a random Bible verse.",
   usage: "bible",
-  credits: "Developer",
+  credits: "Marjhun Baylon",
   cooldown: 0
 };
 

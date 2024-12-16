@@ -10,7 +10,7 @@ module.exports.config = {
   aliases: ['shotivideo'],
   description: 'Fetch and send a random Shoti TikTok video',
   usages: 'shoti',
-  credits: 'Developer',
+  credits: 'Marjhun Baylon',
   cooldowns: 5,
   dependencies: {
     "axios": "",

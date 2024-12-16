@@ -9,7 +9,7 @@ module.exports.config = {
   hasPrefix: true,
   description: "An AI command powered by Hercai",
   usage: "hercai [prompt]",
-  credits: 'Developer',
+  credits: 'Marjhun Baylon',
   cooldown: 3,
 };
 module.exports.run = async function({

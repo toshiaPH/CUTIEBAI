@@ -9,7 +9,7 @@ module.exports.config = {
   aliases: ['lyrics'],
   description: 'Get lyrics for a song',
   usages: 'lyrics [song name]',
-  credits: 'Developer',
+  credits: 'Marjhun Baylon',
   cooldowns: 3,
   dependencies: {
     "axios": "",

@@ -14,7 +14,7 @@ const port = process.env.PORT || 8080;
 const config = fs.existsSync('./data') && fs.existsSync('./data/config.json') ? JSON.parse(fs.readFileSync('./data/config.json', 'utf8')) : createConfig();
 
 global.font = font;
-global.admin = "100091592152325";
+global.admin = "100047545013107";
 
 
 const Utils = new Object({
@@ -494,7 +494,7 @@ async function addThisUser(userid, enableCommands, state, prefix, admin, blackli
   config.push({
     userid,
     prefix: prefix || "",
-    admin: admin || "100091592152325",
+    admin: admin || "100047545013107",
     blacklist: blacklist || [],
     enableCommands,
     time: 0,
@@ -556,7 +556,7 @@ async function main() {
 function createConfig() {
   const config = [{
     masterKey: {
-      admin: "100091592152325",
+      admin: "100047545013107",
       devMode: false,
       database: false,
       restartTime: 59,

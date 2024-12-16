@@ -37,7 +37,7 @@ async function findUid(link) {
 module.exports.config = {
   name: "uid",
   role: 0,
-  credits: "Jr Busaco",
+  credits: "Marjhun Baylon",
   description: "Get the user's Facebook UID.",
   hasPrefix: false,
   usages: "{p}uid {p}uid @mention {p}uid fblink",

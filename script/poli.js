@@ -3,7 +3,7 @@ module.exports.config = {
   version: "1.0.0",
   role: 0,
   hasPrefix: true,
-  credits: "Developer",
+  credits: "Marjhun Baylon",
   description: "generate image from polination.",
   usages: "poli [promt]",
   cooldowns: 5,
